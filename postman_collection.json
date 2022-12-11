@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "9ffaf6fc-6b71-45c4-8da5-5ca5133a4d0a",
+		"name": "CodeEducation Studies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4246747"
+	},
+	"item": [
+		{
+			"name": "Product Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validando status code para uma transação aprovada\r",
+							"pm.test(\"Validação do status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Se apresentar o campo tid na resposta, o mesmo será armazenado na variável de ambiente {{tid}}\r",
+							"var response = JSON.parse(responseBody);\r",
+							"if (response.ID !== undefined){\r",
+							"    pm.environment.set(\"id\", response.ID);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Testing by postman\",\r\n    \"price\" : 25.99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Testando do postman\",\r\n    \"price\" : 25.99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Enabled",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Testando do postman\",\r\n    \"price\" : 25.99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/{{id}}/enable",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"{{id}}",
+						"enable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Disabled",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Testando do postman\",\r\n    \"price\" : 25.99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/{{id}}/disable",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"{{id}}",
+						"disable"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
